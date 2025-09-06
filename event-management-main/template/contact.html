@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact Us - We're Here to Help
+{% endblock %}
+
+{% block content %}
+<section class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-2">Get in Touch</h1>
+        <p class="lead">Have a question? We're here to help you plan the perfect event.</p>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Send Us a Message</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 fw-bold">Send Message</button>
+                </form>
+            </div>
+
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Our Details & Location</h2>
+                <div class="card shadow-sm border-0 rounded-3 overflow-hidden mb-4">
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-3">
+                                <h5 class="fw-semibold text-primary"><i class="fas fa-phone-alt me-2"></i>Phone</h5>
+                                <p class="text-secondary">+91 98765 43210</p>
+                            </li>
+                            <li class="mb-3">
+                                <h5 class="fw-semibold text-primary"><i class="fas fa-envelope me-2"></i>Email</h5>
+                                <p class="text-secondary">contact@eventsplanner.in</p>
+                            </li>
+                            <li class="mb-3">
+                                <h5 class="fw-semibold text-primary"><i class="fas fa-map-marker-alt me-2"></i>Address</h5>
+                                <p class="text-secondary">Events Planner Pvt. Ltd.<br>2nd Floor, Harmony Tower<br>Tiruvalla, Kerala 689101</p>
+                            </li>
+                            <li>
+                                <h5 class="fw-semibold text-primary"><i class="fas fa-share-alt me-2"></i>Social Media</h5>
+                                <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                                <a href="#" class="text-decoration-none"><i class="fab fa-linkedin fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.566113941785!2d76.54148007584109!3d9.92348507541785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0872ff7e436815%3A0x6a0c0e77d94f275b!2sTiruvalla%2C%20Kerala!5e0!3m2!1sen!2sin!4v1694294435850!5m2!1sen!2sin" class="w-100 rounded-3 shadow-sm" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

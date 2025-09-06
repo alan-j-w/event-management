@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home - Evently
+{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light rounded-3 shadow-sm mb-5">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold text-dark">Your Events, Your Way</h1>
+        <p class="lead text-muted mb-4">Discover the best events happening around you or create and manage your own with ease. From concerts to conferences, we have it all.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="#" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">Explore Events</a>
+            <a href="#" class="btn btn-outline-primary btn-lg rounded-pill px-5 shadow-sm">Host Your Event</a>
+        </div>
+    </div>
+</section>
+
+<section class="mb-5">
+    <h2 class="text-center fw-bold mb-4">Featured Events</h2>
+    <div id="highlightsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-pause="hover">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#highlightsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#highlightsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#highlightsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner rounded-3 shadow-lg">
+            <div class="carousel-item active">
+                <img src="{% static 'images/imm.webp' %}" class="d-block w-100" alt="Tech Conference Banner" style="height: 500px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="fw-bold">The Future of Tech</h5>
+                    <p>Join industry leaders and innovators to shape tomorrow.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/imm.webp' %}" class="d-block w-100" alt="Music Festival Banner" style="height: 500px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="fw-bold">Worlds Largest Music Fest</h5>
+                    <p>Vibe with us and experience a night of pure magic.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/imm.webp' %}" class="d-block w-100" alt="Cooking Workshop Banner" style="height: 500px; object-fit: cover;">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="fw-bold">Culinary Masterclass</h5>
+                    <p>Learn to cook like a pro from a Michelin-star chef.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#highlightsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#highlightsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+<section class="py-5 bg-white rounded-3 shadow-sm">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4">Upcoming Events</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{% static 'images/event_placeholder1.jpg' %}" class="card-img-top" alt="Event 1">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Startup Summit</h5>
+                        <p class="card-text text-muted mb-2"><i class="fas fa-calendar-alt me-2"></i>Oct 25, 2025</p>
+                        <p class="card-text text-muted"><i class="fas fa-map-marker-alt me-2"></i>Kochi, Kerala</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{% static 'images/event_placeholder2.jpg' %}" class="card-img-top" alt="Event 2">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Web Dev Workshop</h5>
+                        <p class="card-text text-muted mb-2"><i class="fas fa-calendar-alt me-2"></i>Nov 10, 2025</p>
+                        <p class="card-text text-muted"><i class="fas fa-map-marker-alt me-2"></i>Virtual</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{% static 'images/event_placeholder3.jpg' %}" class="card-img-top" alt="Event 3">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Foodie Festival</h5>
+                        <p class="card-text text-muted mb-2"><i class="fas fa-calendar-alt me-2"></i>Nov 20, 2025</p>
+                        <p class="card-text text-muted"><i class="fas fa-map-marker-alt me-2"></i>Trivandrum, Kerala</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

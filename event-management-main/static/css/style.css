@@ -1,0 +1,13 @@
+.navbar li a {
+    color: #212529; /* A strong, dark color */
+    font-size: 1.1rem;
+    font-weight: 600; /* A bolder font weight */
+    padding: 10px 15px; /* Add some padding around the text */
+    border-radius: 5px; /* Rounded corners for a softer look */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar li a:hover {
+    background-color: #e9ecef; /* A light gray background on hover */
+    color: #212529;
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Events - Discover Your Next Adventure
+{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold display-4">All Events</h1>
+            <p class="lead text-muted">Browse a wide range of events happening near you.</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for event in eve %}
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
+                    <img src="{{ event.img.url }}" class="card-img-top" alt="{{ event.name }}" style="height: 250px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-dark">{{ event.name }}</h5>
+                        <p class="card-text text-muted mb-2">{{ event.desc|truncatechars:75 }}</p>
+                        <ul class="list-unstyled fw-semibold text-primary mb-3">
+                            <li><i class="fas fa-calendar-alt me-2"></i>{{ event.date|date:"F d, Y" }}</li>
+                            <li><i class="fas fa-map-marker-alt me-2"></i>{{ event.location }}</li>
+                        </ul>
+                       
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="text-center p-5 border rounded-3 bg-white">
+                    <h4 class="text-muted">No events available at the moment.</h4>
+                    <p class="text-muted">Stay tuned for exciting updates!</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Event management platform built in Kerala." />
+    <meta name="author" content="Alan" />
+    <title>{% block title %}Evently{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+            padding-top: 5rem; /* Space for fixed header */
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: #dc3545 !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #555 !important;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #dc3545 !important;
+            border-bottom-color: #dc3545;
+        }
+        .navbar-text {
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+        .footer-social-link {
+            font-size: 1.5rem;
+            color: #6c757d;
+            transition: color 0.3s ease;
+        }
+        .footer-social-link:hover {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <i class="fas fa-calendar-star me-2"></i> Evently
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'events' %}">Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'booking' %}">Booking</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                    <div class="d-flex align-items-center ms-auto">
+                        {% if user.is_authenticated %}
+                            <span class="navbar-text me-3 d-none d-md-block">Welcome, <strong class="text-primary">{{ user.username }}</strong></span>
+                            <a class="btn btn-outline-danger rounded-pill" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        {% else %}
+                            <a class="btn btn-outline-primary rounded-pill me-2" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
+                            <a class="btn btn-primary rounded-pill" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-dark text-white pt-5 pb-4 mt-auto">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-left">
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-warning">Evently</h5>
+                    <p>Your one-stop solution for all kinds of event planning and execution. We are committed to making your events truly unforgettable.</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-light">Quick Links</h5>
+                    <p><a href="{% url 'events' %}" class="text-white text-decoration-none">Events</a></p>
+                    <p><a href="{% url 'about' %}" class="text-white text-decoration-none">About Us</a></p>
+                    <p><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact</a></p>
+                    <p><a href="{% url 'login' %}" class="text-white text-decoration-none">Login</a></p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-light">Contact Info</h5>
+                    <p><i class="fas fa-home me-2"></i> Kerala 689100</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@evently.in</p>
+                    <p><i class="fas fa-phone me-2"></i> +91 98765 43210</p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 fw-bold text-light">Follow Us</h5>
+                    <a href="#" aria-label="Instagram" class="footer-social-link text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook" class="footer-social-link text-white me-3"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="footer-social-link text-white"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <hr class="my-3 text-white-50">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 Evently. All rights reserved.</p>
+                </div>
+                <div class="col-md-5 col-lg-4 text-center text-md-end">
+                    <p class="mb-0">Crafted with ❤️ in Kerala</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
