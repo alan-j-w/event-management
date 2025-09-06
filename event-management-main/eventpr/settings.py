@@ -18,7 +18,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-for-local-only')
 DEBUG = os.environ.get('DJANGO_DEBUG', '') == '1'
 
 # Hosts: provide a comma-separated string in env (e.g. "yourapp.onrender.com,localhost")
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+# ALLOWED_HOSTS: explicitly list allowed domains
+ALLOWED_HOSTS = ['eventifys.onrender.com', 'localhost', '127.0.0.1']
+
 
 # Optionally set CSRF trusted origins (comma-separated), e.g. "https://yourapp.onrender.com"
 _csrf_trusted = os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS')
