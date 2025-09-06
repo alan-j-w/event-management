@@ -1,1 +1,1 @@
-web: gunicorn eventpr.wsgi:application --log-file -
+web: gunicorn eventpr.wsgi:application --chdir . --log-file -
