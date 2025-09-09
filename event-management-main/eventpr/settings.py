@@ -83,14 +83,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'eventpr.wsgi.application'
-
-# Database: uses DATABASE_URL when provided, otherwise sqlite
+# Database: use Render Postgres (Internal URL) or fallback to sqlite
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
-        conn_max_age=600
+        os.environ.get(
+            'DATABASE_URL',
+            'postgresql://eventifys_db_user:rARmuE4NPfryvenfm25YpXYOrpE7ZAvX@dpg-d2vt2i3uibrs73dnn27g-a/eventifys_db'
+        ),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
