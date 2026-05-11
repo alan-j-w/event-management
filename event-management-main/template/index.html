@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home - Evently
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 mb-5" style="background: linear-gradient(to right, #f8fafc, #ffffff); border-bottom: 1px solid #e2e8f0;">
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="badge bg-primary-subtle text-primary mb-3 px-3 py-2 rounded-pill fw-bold">Premium Event Management</span>
+                <h1 class="display-4 fw-bold mb-4" style="color: #0f172a; letter-spacing: -0.025em;">Discover and Book <br><span class="text-primary">Exceptional Events.</span></h1>
+                <p class="lead text-secondary mb-5">The most reliable platform for discovering world-class cultural festivals, tech conferences, and workshops in Kerala. Simple, secure, and professional.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'events' %}" class="btn btn-primary btn-lg px-4 shadow-sm">Explore Events</a>
+                    <a href="{% url 'booking' %}" class="btn btn-outline-secondary btn-lg px-4">Book Your Spot</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <img src="{% static 'images/imm.webp' %}" class="img-fluid rounded-4 shadow-lg" alt="Events" style="border: 8px solid white;">
+                    <div class="position-absolute bottom-0 start-0 bg-white p-4 shadow-lg rounded-4 m-3 d-none d-md-block border">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary-subtle rounded-circle p-2 me-3">
+                                <i class="fas fa-users text-primary"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">50,000+</h6>
+                                <p class="text-muted small mb-0">Event Enthusiasts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Section -->
+<section class="py-5 mb-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h2 class="section-title h1 mb-2">Featured Experiences</h2>
+                <p class="text-muted">Hand-picked events you shouldn't miss.</p>
+            </div>
+            <a href="{% url 'events' %}" class="btn btn-outline-primary btn-sm rounded-pill px-4">View All</a>
+        </div>
+        
+        <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel" style="border-radius: 1rem; overflow: hidden; box-shadow: var(--card-shadow);">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/imm.webp' %}" class="d-block w-100" style="height: 500px; object-fit: cover;">
+                    <div class="carousel-caption text-start bg-dark bg-opacity-50 p-5 w-100 start-0 bottom-0">
+                        <h3 class="fw-bold h2 mb-2">Global Tech Summit</h3>
+                        <p class="mb-0">Join the leaders of innovation in Kochi.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/crsl1.jpeg' %}" class="d-block w-100" style="height: 500px; object-fit: cover;">
+                    <div class="carousel-caption text-start bg-dark bg-opacity-50 p-5 w-100 start-0 bottom-0">
+                        <h3 class="fw-bold h2 mb-2">Monsoon Music Festival</h3>
+                        <p class="mb-0">A rhythmic journey through the rain.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events Grid -->
+<section class="py-5 bg-light border-top border-bottom">
+    <div class="container">
+        <h2 class="section-title h1 mb-5 text-center">Upcoming Events</h2>
+        <div class="row g-4">
+            {% for event in latest_events %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm transition-hover" style="border-radius: 1rem; overflow: hidden; border: 1px solid #e2e8f0 !important;">
+                    <img src="{{ event.img.url }}" class="card-img-top" style="height: 240px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-light text-primary border border-primary-subtle rounded-pill">{{ event.date|date:"d M, Y" }}</span>
+                            <span class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>{{ event.location|truncatechars:15 }}</span>
+                        </div>
+                        <h5 class="fw-bold mb-3 h4">{{ event.name }}</h5>
+                        <p class="text-muted mb-4 small" style="line-height: 1.6;">{{ event.desc|truncatewords:20 }}</p>
+                        <a href="{% url 'event_detail' event.id %}" class="btn btn-outline-primary btn-sm w-100">View Details</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted h5">No events available right now.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .transition-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .transition-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+{% endblock %}

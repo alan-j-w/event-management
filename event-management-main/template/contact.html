@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact Us - We're Here to Help
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <h2 class="section-title h1 mb-4">Get in Touch</h2>
+                <p class="text-secondary mb-5">Have questions about an event? We're here to help you create
+                    unforgettable experiences.</p>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-phone-alt text-primary me-3"></i>
+                        <h6 class="fw-bold mb-0">Phone</h6>
+                    </div>
+                    <p class="text-muted ms-4 ps-2">+91 910000000</p>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-envelope text-primary me-3"></i>
+                        <h6 class="fw-bold mb-0">Email</h6>
+                    </div>
+                    <p class="text-muted ms-4 ps-2">hello@eventifys.in</p>
+                </div>
+
+                <div class="mb-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-map-marker-alt text-primary me-3"></i>
+                        <h6 class="fw-bold mb-0">Office</h6>
+                    </div>
+                    <p class="text-muted ms-4 ps-2">Harmony Tower, Tiruvalla<br>Kerala, India 689101</p>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="bg-white p-5 rounded-4 shadow-sm border">
+                    <h3 class="fw-bold mb-4 h4">Send us a Message</h3>
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-4">
+                            {% for field in form %}
+                            <div class="col-12 position-relative">
+                                <label for="{{ field.id_for_label }}" class="form-label small fw-bold text-dark">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                <div class="invalid-feedback">
+                                    Please provide a valid {{ field.label|lower }}.
+                                </div>
+                                {% for error in field.errors %}
+                                <div class="text-danger small mt-1">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 mt-4">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .form-control {
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        background-color: #f8fafc;
+        transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+        background-color: #fff;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+</style>
+{% endblock %}

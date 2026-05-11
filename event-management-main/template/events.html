@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Events - Discover Your Next Adventure
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="section-title h1 mb-3">All Events</h1>
+            <p class="text-muted mx-auto" style="max-width: 600px;">Explore our comprehensive list of events. From cultural festivals to corporate summits.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for event in eve %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm transition-hover" style="border: 1px solid #e2e8f0; border-radius: 0.75rem; overflow: hidden;">
+                    <img src="{{ event.img.url }}" class="card-img-top" alt="{{ event.name }}" style="height: 220px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3 text-primary small fw-bold">
+                            <i class="fas fa-calendar-alt me-2"></i> {{ event.date|date:"F d, Y"|default:"TBA" }}
+                        </div>
+                        <h4 class="fw-bold mb-3 h5">{{ event.name }}</h4>
+                        <p class="text-muted small mb-4">{{ event.desc|truncatechars:120 }}</p>
+                        
+                        <div class="pt-3 border-top d-flex justify-content-between align-items-center">
+                            <span class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>{{ event.location|default:"TBA" }}</span>
+                            <a href="{% url 'event_detail' event.id %}" class="btn btn-primary btn-sm px-3">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <h4 class="text-muted">No events found.</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .transition-hover {
+        transition: transform 0.3s ease;
+    }
+    .transition-hover:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}

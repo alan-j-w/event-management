@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ event.name }} - Evently
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'events' %}">Events</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ event.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <img src="{{ event.img.url }}" class="img-fluid rounded-4 shadow-lg mb-4 w-100" alt="{{ event.name }}" style="max-height: 500px; object-fit: cover;">
+                <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
+                    <h1 class="fw-bold mb-3">{{ event.name }}</h1>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <span class="badge bg-primary-subtle text-primary rounded-pill px-3 py-2">
+                            <i class="fas fa-calendar-alt me-2"></i>{{ event.date|date:"F d, Y"|default:"TBA" }}
+                        </span>
+                        <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>{{ event.location|default:"TBA" }}
+                        </span>
+                    </div>
+                    <h4 class="fw-bold mb-3">About the Event</h4>
+                    <p class="text-muted lead" style="white-space: pre-line;">{{ event.desc }}</p>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                        <div class="bg-primary text-white p-4 text-center">
+                            <h3 class="fw-bold mb-0">Secure Your Spot</h3>
+                            <p class="mb-0 opacity-75">Limited spaces available!</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-grid gap-3">
+                                <div class="p-3 bg-light rounded-3">
+                                    <h6 class="fw-bold mb-1"><i class="fas fa-ticket-alt me-2"></i>Availability</h6>
+                                    <p class="text-success mb-0 fw-semibold">Tickets currently available</p>
+                                </div>
+                                <a href="{% url 'booking' %}" class="btn btn-primary btn-lg rounded-pill fw-bold py-3">Book Now</a>
+                                <button class="btn btn-outline-secondary btn-lg rounded-pill py-3">
+                                    <i class="fas fa-share-alt me-2"></i>Share Event
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 p-4 bg-white rounded-4 shadow-sm">
+                        <h5 class="fw-bold mb-3">Organizer Info</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-light rounded-circle p-3 me-3">
+                                <i class="fas fa-user-tie fa-2x text-primary"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-0">Eventify Kerala</h6>
+                                <p class="text-muted small mb-0">Verified Organizer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
